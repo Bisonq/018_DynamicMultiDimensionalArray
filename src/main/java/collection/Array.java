@@ -1,5 +1,7 @@
 package collection;
 
+import java.util.List;
+
 public interface Array<E> {
 
     /**
@@ -10,6 +12,17 @@ public interface Array<E> {
      * @throws IndexOutOfBoundsException if the row is out of range
      */
     public boolean add(E element, int row);
+
+    /**
+     * Inserts the specified element at the specified position in this list.
+     * Shifts the element currently at that position (if any) and any subsequent elements to the right
+     * @param element added element
+     * @param row specified row indexing from 0
+     * @param column specified column indexing from 0
+     * @return true if element has been added
+     * @throws IndexOutOfBoundsException if the row or column is out of range
+     */
+    public boolean add(E element, int row, int column);
 
     /**
      * Replaces the element at the specified row in specify column
@@ -43,4 +56,22 @@ public interface Array<E> {
      * @throws IndexOutOfBoundsException if the row or column is out of range
      */
     public E get(int row, int column);
+
+    /**
+     * Removes all of the elements from this MultiDimensionalArray
+     */
+    public void clear();
+
+    /**
+     * Removes all of the elements in specified row from this MultiDimensionalArray
+     * @param row specified row indexing from 0
+     * @throws IndexOutOfBoundsException if the row is out of range
+     */
+    public void clearRow(int row);
+
+    /**
+     * Returns the List containing all of the elements in this MultiDimensionalArray in proper sequence (from first to last element).
+     * @return List containing all of the elements in this MultiDimensionalArra
+     */
+    public List<E> toList();
 }

@@ -28,6 +28,17 @@ public class MultiDimensionalArray<E> implements Array<E> {
     }
 
     @Override
+    public boolean add(E element, int row, int column) {
+        isRowInRange(row);
+        List<E> specifyRow = getRow(row);
+
+        isColumnInRange(column, specifyRow);
+
+        specifyRow.add(column, element);
+        return true;
+    }
+
+    @Override
     public boolean set(E element, int row, int column) {
         isRowInRange(row);
 
@@ -66,6 +77,27 @@ public class MultiDimensionalArray<E> implements Array<E> {
         isRowInRange(row);
 
         return getRow(row).size();
+    }
+
+    @Override
+    public void clear() {
+        arrayElementsContainer.clear();
+    }
+
+    @Override
+    public void clearRow(int row) {
+        isRowInRange(row);
+        List<E> specifiedRow = getRow(row);
+        specifiedRow.clear();
+    }
+
+    @Override
+    public List<E> toList() {
+        List<E> resultList = new ArrayList<>();
+        for(int i = 0 ; i < arrayElementsContainer.size() ; i++){
+            resultList.addAll(getRow(i));
+        }
+        return resultList;
     }
 
     public void isRowInRange(int row) {

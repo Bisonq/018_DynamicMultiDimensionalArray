@@ -30,12 +30,25 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
+    public void shouldReturnTrueWhenElementHasBeenAddedInSpecifyPositionCorrectly(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
+        array.add(3, 0);
+
+        //when
+        boolean result = array.add(5, 0, 0);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
     public void elementsInTheArrayShouldBeInTheCorrectOrder(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(5, 0);
         array.add(4, 0);
-        array.add(3, 0);
+        array.add(3, 0, 0);
 
         //when
         int element1 = array.get(0,0);
@@ -43,9 +56,9 @@ public class MultiDimensionalArrayTest {
         int element3 = array.get(0,2);
 
         //then
-        assertThat(element1).isEqualTo(5);
-        assertThat(element2).isEqualTo(4);
-        assertThat(element3).isEqualTo(3);
+        assertThat(element1).isEqualTo(3);
+        assertThat(element2).isEqualTo(5);
+        assertThat(element3).isEqualTo(4);
     }
 
     @Test
@@ -128,5 +141,66 @@ public class MultiDimensionalArrayTest {
 
         //then
         assertThat(element1).isEqualTo(4);
+    }
+
+    @Test
+    public void arrayShouldNotContainsElementsAfterClear(){
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
+        array.add(4, 0);
+        array.add(5, 0);
+
+        //when
+        array.clear();
+        int actualArraySize = array.size();
+
+        //then
+        assertThat(actualArraySize).isEqualTo(0);
+    }
+
+    @Test
+    public void arrayShouldNotContainsElementsAtSpecifiedRowAfterClear(){
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
+        array.add(4, 0);
+        array.add(5, 0);
+
+        //when
+        array.clearRow(0);
+        int actualRowSize = array.getRow(0).size();
+
+        //then
+        assertThat(actualRowSize).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnListThatContainsAllElementsFromTheArray(){
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        List<Integer> resultList = array.toList();
+
+        //then
+        assertThat(resultList.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldReturnListThatContainsAllElementsFromTheArrayInCorrectOrder(){
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        List<Integer> resultList = array.toList();
+        int element1 = resultList.get(0);
+        int element2 = resultList.get(1);
+        int element3 = resultList.get(2);
+
+        //then
+        assertThat(element1).isEqualTo(4);
+        assertThat(element2).isEqualTo(5);
+        assertThat(element3).isEqualTo(6);
     }
 }
