@@ -5,8 +5,8 @@ import java.util.List;
 public interface Array<E> {
 
     /**
-     *  Appends element to the end of specified row
-     * @param element element to be appended to the Array
+     *  Appends element to the end of specified row in this MultiDimensionalArray
+     * @param element element to be appended to specify row
      * @param row specified row indexing from 0
      * @return true if element has been added
      * @throws IndexOutOfBoundsException if the row is out of range
@@ -14,7 +14,7 @@ public interface Array<E> {
     public boolean add(E element, int row);
 
     /**
-     * Inserts the specified element at the specified position in this list.
+     * Inserts the specified element at the specified position in this MultiDimensionalArray.
      * Shifts the element currently at that position (if any) and any subsequent elements to the right
      * @param element added element
      * @param row specified row indexing from 0
@@ -25,7 +25,7 @@ public interface Array<E> {
     public boolean add(E element, int row, int column);
 
     /**
-     * Replaces the element at the specified row in specify column
+     * Replaces the element at the specified position in this MultiDimensionalArray
      * @param element new element
      * @param row specified row indexing from 0
      * @param column specify column indexing from 0
@@ -49,7 +49,7 @@ public interface Array<E> {
     public int size(int row);
 
     /**
-     * Returns the element at the specified position in this list.
+     * Returns the element at the specified position in this MultiDimensionalArray.
      * @param row specified row indexing from 0
      * @param column specify column indexing from 0
      * @return the element at the specified position in this list

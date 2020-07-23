@@ -73,7 +73,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenElementHasBeenChangedInSpecifyRowInSpecifyColumnCorrectly(){
+    public void shouldReturnTrueWhenElementHasBeenChangedInSpecifyPositionCorrectly(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
@@ -132,7 +132,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnCorrectElementInSpecifiedRowInSpecifiedColumn(){
+    public void shouldReturnCorrectElementInSpecifiedPosition(){
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
 
