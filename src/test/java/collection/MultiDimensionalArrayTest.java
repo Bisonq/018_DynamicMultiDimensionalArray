@@ -18,7 +18,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenElementHasBeenAddedInSpecifyRowCorrectly(){
+    public void shouldReturnTrueWhenElementHasBeenAddedAtSpecifyRowCorrectly(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
 
@@ -30,7 +30,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenElementHasBeenAddedInSpecifyPositionCorrectly(){
+    public void shouldReturnTrueWhenElementHasBeenAddedAtSpecifyPositionCorrectly(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(3, 0);
@@ -73,7 +73,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenElementHasBeenChangedInSpecifyPositionCorrectly(){
+    public void shouldReturnTrueWhenElementHasBeenChangedAtSpecifyPositionCorrectly(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
@@ -101,7 +101,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnCorrectSizeInSpecifiedRow(){
+    public void shouldReturnCorrectSizeOfTheSpecifiedRow(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
@@ -133,7 +133,7 @@ public class MultiDimensionalArrayTest {
     }
 
     @Test
-    public void shouldReturnCorrectElementInSpecifiedPosition(){
+    public void shouldReturnCorrectElementAtSpecifiedPosition(){
         //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
