@@ -209,4 +209,71 @@ public class MultiDimensionalArrayTest {
         assertThat(element2).isEqualTo(5);
         assertThat(element3).isEqualTo(6);
     }
+
+
+    @Test
+    public void shouldContainsCorrectElementsAfterRemoveRow(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        array.removeRow(0);
+        List<Integer> elementsAfterRemoveRow = array.toList();
+
+        //then
+        assertThat(elementsAfterRemoveRow).containsExactly(6);
+    }
+
+    @Test
+    public void shouldChangeIndexesOfRowSmallerThanTheRowBeingDeleted(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        List<Integer> oldRowLocation =  array.getRow(1);
+        array.removeRow(0);
+        List<Integer> newRowLocation = array.getRow(0);
+
+        //then
+        assertThat(oldRowLocation).isSameAs(newRowLocation);
+    }
+
+    @Test
+    public void shouldNotChangeIndexesOfRowBiggerThanTheRowBeingDeleted(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        List<Integer> oldRowLocation =  array.getRow(0);
+        array.removeRow(1);
+        List<Integer> newRowLocation = array.getRow(0);
+
+        //then
+        assertThat(oldRowLocation).isSameAs(newRowLocation);
+    }
+
+    @Test
+    public void shouldRemoveCorrectElementAtSpecifyPosition(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        //when
+        array.removeElement(0, 0);
+        List<Integer> rowAfterRemoveElement = array.getRow(0);
+
+        //then
+        assertThat(rowAfterRemoveElement).containsExactly(5);
+    }
 }

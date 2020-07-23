@@ -39,6 +39,31 @@ public class MultiDimensionalArray<E> implements Array<E> {
     }
 
     @Override
+    public boolean removeRow(int row) {
+        isRowInRange(row);
+        Map<Integer, List<E>> arrayAfterRemove = new HashMap<>();
+        for(int i = 0 ; i < arrayElementsContainer.size(); i++){
+            if(i < row)
+                arrayAfterRemove.put(i, arrayElementsContainer.get(i));
+            else if(i > row)
+                arrayAfterRemove.put(i - 1, arrayElementsContainer.get(i));
+        }
+        this.arrayElementsContainer = arrayAfterRemove;
+        return true;
+    }
+
+    @Override
+    public boolean removeElement(int row, int column) {
+        isRowInRange(row);
+        List<E> specifyRow = getRow(row);
+
+        isColumnInRange(column, specifyRow);
+
+        specifyRow.remove(column);
+        return true;
+    }
+
+    @Override
     public boolean set(E element, int row, int column) {
         isRowInRange(row);
 

@@ -25,6 +25,23 @@ public interface Array<E> {
     public boolean add(E element, int row, int column);
 
     /**
+     * Removes the row in this MultiDimensionalArray
+     * @param row specified row that will be removed indexing from 0
+     * @return true if row has been removed
+     * @throws IndexOutOfBoundsException if the row is out of range
+     */
+    public boolean removeRow(int row);
+
+    /**
+     * Removes the element at the specified position in this MultiDimensionalArray
+     * @param row specified row indexing from 0
+     * @param column specified column indexing from 0
+     * @return true if element has been removed
+     * @throws IndexOutOfBoundsException if the row or column is out of range
+     */
+    public boolean removeElement(int row, int column);
+
+    /**
      * Replaces the element at the specified position in this MultiDimensionalArray
      * @param element new element
      * @param row specified row indexing from 0
