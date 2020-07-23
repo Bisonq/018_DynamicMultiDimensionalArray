@@ -117,6 +117,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void shouldReturnSpecifiedRow(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
         array.add(3, 0);
@@ -133,6 +134,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void shouldReturnCorrectElementInSpecifiedPosition(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
 
@@ -145,6 +147,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void arrayShouldNotContainsElementsAfterClear(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
         array.add(5, 0);
@@ -159,6 +162,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void arrayShouldNotContainsElementsAtSpecifiedRowAfterClear(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(1);
         array.add(4, 0);
         array.add(5, 0);
@@ -173,6 +177,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void shouldReturnListThatContainsAllElementsFromTheArray(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
         array.add(4, 0);
         array.add(5, 0);
@@ -187,6 +192,7 @@ public class MultiDimensionalArrayTest {
 
     @Test
     public void shouldReturnListThatContainsAllElementsFromTheArrayInCorrectOrder(){
+        //given
         MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
         array.add(4, 0);
         array.add(5, 0);
