@@ -1,9 +1,6 @@
 package collection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MultiDimensionalArray<E> implements Array<E> {
 
@@ -42,12 +39,13 @@ public class MultiDimensionalArray<E> implements Array<E> {
     public boolean removeRow(int row) {
         isRowInRange(row);
         Map<Integer, List<E>> arrayAfterRemove = new HashMap<>();
-        for(int i = 0 ; i < arrayElementsContainer.size(); i++){
+        for(int i = 0 ; i < numberOfRows ; i++){
             if(i < row)
                 arrayAfterRemove.put(i, arrayElementsContainer.get(i));
             else if(i > row)
                 arrayAfterRemove.put(i - 1, arrayElementsContainer.get(i));
         }
+        this.numberOfRows = arrayAfterRemove.size();
         this.arrayElementsContainer = arrayAfterRemove;
         return true;
     }
@@ -91,7 +89,7 @@ public class MultiDimensionalArray<E> implements Array<E> {
     @Override
     public int size() {
         int counter = 0;
-        for(int i  = 0 ; i < arrayElementsContainer.size() ; i++){
+        for(int i  = 0 ; i < numberOfRows ; i++){
             counter += getRow(i).size();
         }
         return counter;
@@ -107,6 +105,7 @@ public class MultiDimensionalArray<E> implements Array<E> {
     @Override
     public void clear() {
         arrayElementsContainer.clear();
+        this.numberOfRows = arrayElementsContainer.size();
     }
 
     @Override
@@ -117,9 +116,50 @@ public class MultiDimensionalArray<E> implements Array<E> {
     }
 
     @Override
+    public boolean contains(E element) {
+        for(int i = 0 ; i < numberOfRows ; i++){
+            for(E value : arrayElementsContainer.get(i)){
+                if(value.equals(element))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsAtRow(E element, int row) {
+        isRowInRange(row);
+        List<E> specifiedRow = getRow(row);
+
+        for(E value : specifiedRow)
+            if(value.equals(element))
+                return true;
+        return false;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new MultiDimensionalArrayIterator<E>(toList());
+    }
+
+    @Override
+    public void trimToSize() {
+        Map<Integer, List<E>> arrayAfterRemove = new HashMap<>();
+        int newIndex = 0;
+
+        for(int i = 0 ; i < numberOfRows ; i++){
+            List<E> row = getRow(i);
+            if(row.size() > 0)
+                arrayAfterRemove.put(newIndex++, row);
+        }
+        this.numberOfRows = arrayAfterRemove.size();
+        this.arrayElementsContainer = arrayAfterRemove;
+    }
+
+    @Override
     public List<E> toList() {
         List<E> resultList = new ArrayList<>();
-        for(int i = 0 ; i < arrayElementsContainer.size() ; i++){
+        for(int i = 0 ; i < numberOfRows ; i++){
             resultList.addAll(getRow(i));
         }
         return resultList;
@@ -138,5 +178,9 @@ public class MultiDimensionalArray<E> implements Array<E> {
     public List<E> getRow(int row){
         isRowInRange(row);
         return arrayElementsContainer.get(row);
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
     }
 }

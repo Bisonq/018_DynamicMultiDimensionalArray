@@ -2,7 +2,7 @@ package collection;
 
 import java.util.List;
 
-public interface Array<E> {
+public interface Array<E> extends Iterable<E>{
 
     /**
      *  Appends element to the end of specified row in this MultiDimensionalArray
@@ -85,6 +85,27 @@ public interface Array<E> {
      * @throws IndexOutOfBoundsException if the row is out of range
      */
     public void clearRow(int row);
+
+    /**
+     * Check if the MultiDimensionalArray contains specify element
+     * @param element searched element
+     * @return true if this MultiDimensionalArray contains the specified element, otherwise false
+     */
+    public boolean contains(E element);
+
+    /**
+     * Check if the MultiDimensionalArray contains specify element at specify row
+     * @param element searched element
+     * @param row specified row indexing from 0
+     * @return true if MultiDimensionalArray contains specify element at specify row, otherwise false
+     * @throws IndexOutOfBoundsException if the row is out of range
+     */
+    public boolean containsAtRow(E element, int row);
+
+    /**
+     * Remove unused (empty) rows
+     */
+    public void trimToSize();
 
     /**
      * Returns the List containing all of the elements in this MultiDimensionalArray in proper sequence (from first to last element).

@@ -2,6 +2,7 @@ package collection;
 
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -275,5 +276,164 @@ public class MultiDimensionalArrayTest {
 
         //then
         assertThat(rowAfterRemoveElement).containsExactly(5);
+    }
+
+    @Test
+    public void shouldReturnTrueWhenSpecifyElementIsOnTheArray(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        int searchedElement = 6;
+
+        //when
+        boolean result = array.contains(searchedElement);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenSpecifyElementIsNotOnTheArray(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        int searchedElement = 7;
+
+        //when
+        boolean result = array.contains(searchedElement);
+
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnTrueWhenSpecifyElementIsOnTheSpecifyRow(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        int searchedElement = 6;
+        int specifyRow = 1;
+
+        //when
+        boolean result = array.containsAtRow(searchedElement, specifyRow);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenSpecifyElementIsNotOnTheSpecifyRow(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(2);
+        array.add(4, 0);
+        array.add(5, 0);
+        array.add(6, 1);
+
+        int searchedElement = 7;
+        int specifyRow = 1;
+
+        //when
+        boolean result = array.containsAtRow(searchedElement, specifyRow);
+
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnCorrectNumbersOfRows(){
+        //given
+        int numberOfRows = 3;
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(numberOfRows);
+
+        //when
+        int result = array.getNumberOfRows();
+
+        //then
+        assertThat(result).isEqualTo(numberOfRows);
+    }
+
+    @Test
+    public void shouldReturnMultiDimensionalArrayIterator(){
+        //given
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(3);
+
+        int inputElement1 = 5;
+        int inputElement2 = 1;
+        int inputElement3 = 2;
+
+        array.add(inputElement1, 0);
+        array.add(inputElement2, 0);
+        array.add(inputElement3, 0);
+
+        //when
+        Iterator<Integer> arrayIterator = array.iterator();
+        int resultElement1 = arrayIterator.next();
+        int resultElement2 = arrayIterator.next();
+        int resultElement3 = arrayIterator.next();
+
+        //then
+        assertThat(resultElement1).isEqualTo(inputElement1);
+        assertThat(resultElement2).isEqualTo(inputElement2);
+        assertThat(resultElement3).isEqualTo(inputElement3);
+
+        assertThat(arrayIterator.getClass()).isEqualTo(MultiDimensionalArrayIterator.class);
+    }
+
+    @Test
+    public void arrayAfterTrimShouldHaveCorrectNumbersOfRow(){
+        //given
+        int numberOfRows = 3;
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(numberOfRows);
+        array.add(5, 0);
+
+        //when
+        array.trimToSize();
+        int newNumbersOfRow = array.getNumberOfRows();
+
+        //then
+        assertThat(newNumbersOfRow).isEqualTo(1);
+    }
+
+    @Test
+    public void arrayAfterTrimShouldChangeTheStructure(){
+        //given
+        int numberOfRows = 3;
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(numberOfRows);
+        array.add(5, 1);
+        List<Integer> listWithOldLocation = array.getRow(1);
+
+        //when
+        array.trimToSize();
+        List<Integer> listWithNewLocation = array.getRow(0);
+
+        //then
+        assertThat(listWithNewLocation).isSameAs(listWithOldLocation);
+    }
+
+    @Test
+    public void theSameRowAfterTrimShouldKeepTheSameElements(){
+        //given
+        int numberOfRows = 3;
+        int element1 = 5;
+        int element2 = 3;
+
+        MultiDimensionalArray<Integer> array = new MultiDimensionalArray<>(numberOfRows);
+        array.add(element1, 0);
+        array.add(element2, 0);
+        //when
+        array.trimToSize();
+        List<Integer> listWithNewLocation = array.getRow(0);
+
+        //then
+        assertThat(listWithNewLocation).containsExactly(5, 3);
     }
 }
