@@ -58,7 +58,7 @@ public interface Array<E> {
     public int size();
 
     /**
-     * Return the numbers of elements in specified row in this MultiDimensionalArray
+     * Return the numbers of elements at specified row in this MultiDimensionalArray
      * @param row specified row indexing from 0
      * @return the numbers of elements in specified row
      * @throws IndexOutOfBoundsException if the row is out of range
@@ -66,7 +66,7 @@ public interface Array<E> {
     public int size(int row);
 
     /**
-     * Returns the element at the specified position in this MultiDimensionalArray.
+     * Returns the element at specified position in this MultiDimensionalArray.
      * @param row specified row indexing from 0
      * @param column specify column indexing from 0
      * @return the element at the specified position in this list
@@ -80,7 +80,7 @@ public interface Array<E> {
     public void clear();
 
     /**
-     * Removes all of the elements in specified row from this MultiDimensionalArray
+     * Removes all of the elements at specified row from this MultiDimensionalArray
      * @param row specified row indexing from 0
      * @throws IndexOutOfBoundsException if the row is out of range
      */
